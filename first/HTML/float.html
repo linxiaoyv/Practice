@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>浮动布局</title>
+    <style>
+        .wh100{
+            width:100px;
+            height: 100px;
+        }
+        .w200h{
+            width: 200px;
+            height: 100px;
+        }
+        .wh200{
+            width: 100px;
+            height: 200px;
+        }
+        .green{
+            background-color: #ccffcc;
+        }
+        .pink{
+            background-color: #ffcccc;
+        }
+        .purple{
+            background-color: #ccccff;
+        }
+        .gray{
+            background-color: #cccccc;
+        }
+        .of{
+            overflow: auto
+        }
+        .w400{
+            width: 400px;
+            margin: auto;
+        }
+        .w600{
+            width: 600px;
+            margin: auto;
+        }
+        div div{
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="w400 of">
+        <div class=" wh100 green"></div>
+        <div class=" w200h pink"></div>
+        <div class=" wh100 purple"></div>
+        <div class=" wh200 gray "></div>
+        <div class=" wh100 purple"></div>
+        <div class=" wh100 gray"></div>
+        <div class=" wh100 green"></div>
+        <div class=" wh100 pink"></div>
+        <div class=" wh100 green"></div>
+        <div class=" wh100 gray"></div>
+        <div class=" wh200 pink"></div>
+        <div class=" wh200 purple"></div>
+        <div class=" w200h pink"></div>
+        <div class=" wh100 green"></div>
+        <div class=" wh100 purple"></div>
+    </div>
+    <div class="w600 of">
+        <div class=" wh100 green"></div>
+        <div class=" wh100 purple"></div>
+        <div class=" wh100 pink"></div>
+        <div class=" wh100 purple"></div>
+        <div class=" wh100 green"></div>
+        <div class=" wh100 pink"></div>
+    </div>
+</body>
+</html>

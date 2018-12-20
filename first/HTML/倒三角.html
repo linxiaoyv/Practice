@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>倒三角</title>
+</head>
+<style>
+    body{
+        width: 680px;
+        margin: 100px auto;
+    }
+</style>
+<body>
+<script type="text/javascript">
+    for(let i = 0;i < 10;i++){//行数
+        for (let j = 0;j < i;j++) {//空格个数
+            document.write("&nbsp&nbsp&nbsp");
+        }
+        for(let a = 10-i; a > 0; a--){//星星数
+            document.write("*"+"&nbsp"+"&nbsp"+"&nbsp"+"&nbsp"+" ");
+        }
+        document.write("</br>") ;
+    }
+</script>
+</body>
+</html>
