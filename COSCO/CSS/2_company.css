@@ -1,0 +1,24 @@
+h3{
+    line-height: 56px;
+    font-size: 16px;
+    color: #333;
+    text-align: center;
+    /*font-weight: 700;*/
+}
+main{
+    /*height: 545px;*/
+    height: 360px;
+}
+.content{
+    line-height: 25px;
+    font-size: 14px;
+    padding: 0 10px;
+    text-indent: 2em;
+}
+span{
+    font-weight: 700;
+    display: inline-block;
+}
+.bottom{
+    margin-top: 35px;
+}

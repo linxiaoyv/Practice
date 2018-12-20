@@ -1,93 +1,8 @@
-html{
-    background-color: #fff;
-}
-body{
-    width: 980px;
-    background: url("../images/2.png") ;
-    margin: auto;
-    border-bottom: 1px solid #333;
-    border-top:  1px solid #333;
-}
-a{
-    display: inline-block;
-}
-i{
-    background: url("../images/css_sprites.png");
-    float: left;
-}
-.fr{
-    float: right;
-}
-.of{
-    overflow: hidden;
-}
-
-
-/*header start*/
-
-/*logo*/
-.h-bottom{
-    margin-top: 6px;
-    background-color: #fff;
-    padding-bottom: 2px;
-}
-.h-logo{
-    height: 45px;
-    background-image: linear-gradient(to bottom,#ebf3f5,#fff);
-    border-bottom: 1px solid #f2f2f2;
-    padding: 17px 15px 7px;
-}
-.h-logo a{
-    color: #000;
-    width: 965px;
-}
-.logo{
-    width: 46px;
-    height: 39px;
-    background-position:  -504px -10px;
-    margin-right: 7px;
-}
-h1{
-    font: 700 18px "Adobe 黑体 Std";
-}
-h2{
-    font: 700  9px "Adobe 黑体 Std";
-    color: #999898;
-}
-.line{
-    height: 5px;
-    background-color: #f2f2f2;
-    margin: 2px 0 5px;
-}
-
-/*导航*/
-nav{
-    width: 890px;
-    background: url('../images/bac1.png');
-    padding-left: 90px;
-}
-nav li a{
-    float: left;
-    color: white;
-    line-height: 38px;
-    padding: 0 15px;
-}
-nav  li a:hover {
-    background: url('../images/12_5.png') no-repeat;
-    padding: 0 0 0 15px;
-    color: white;
-}
-nav  li a:hover span{
-    background: url('../images/12_5.png') no-repeat right;
-    display: inline-block;
-    padding-right: 13px;
-}
-/*header end*/
-
-
 /*main start*/
 main{
-    padding: 0 10px;
+    background: url("../images/2.png");
+    margin: 0 10px;
+    padding: 0;
 }
 main>div{
     margin-top: 8px;
@@ -179,22 +94,11 @@ main>div{
     height: 33px;
     margin: 2px 7px 0 0;
 }
-div .icon-1{
-    width: 9px;
-    height: 9px;
-    background-position: -38px -10px;
-    margin: 8px;
-}
+
 .manager li{
     line-height: 30px;
     border-top: 1px dashed #b6b6b6;
     padding: 6px 0;
-}
-.caption{
-    line-height: 27px;
-    font-weight: 700;
-    border-radius: 3px;
-    color: #34373c;
 }
 .caption a{
     margin-right: 10px;
@@ -243,12 +147,19 @@ div .icon-1{
 /*关于我们*/
 .module{
     display: flex;
-    display: -webkit-box;
     justify-content: space-between;
 }
 .module img{
     display: block;
     margin: 5px auto 10px;
+}
+.module .caption{
+    background-color: #fff;
+    color: #34373c;
+}
+.m-first .caption{
+    background-color: #3a3e43;
+    color: white;
 }
 .content{
     margin-bottom: 10px;
@@ -275,14 +186,7 @@ div .icon-1{
 
 
 /*最新动态*/
-.manager>.caption,
-.m-first>.caption,
-.contact>.caption,
-.site-l>.caption
-{
-    background-color: #3a3e43;
-    color: white;
-}
+
 .icon-1\(1\){
     width: 12px;
     height: 12px;
@@ -300,11 +204,7 @@ div .icon-1{
 .site-l .n-first{
     border: 0;
 }
-.icon-3{
-    width: 21px;
-    height: 11px;
-    background-position: -107px -10px;
-}
+
 .n-list p{
     float: left;
     color: #5a5a5a;
@@ -331,12 +231,3 @@ div .icon-1{
     margin: 14px 0;
 }
 
-/*footer start*/
-footer{
-    background-color: #303338;
-    margin: 10px;
-    border-radius: 3px;
-    color: #adadaf;
-    text-align: center;
-    padding: 27px;
-}
