@@ -1,20 +1,20 @@
 /*main start*/
-main{
+main {
     background: url("../images/2.png");
     margin: 0 10px;
     padding: 0;
 }
-main>div{
+main>div {
     margin-top: 8px;
 }
-.site-l{
+.site-l {
     width: 723px;
     background-color: #fff;
     border-radius: 4px;
     float: left;
     padding: 8px 5px;
 }
-.site-r{
+.site-r {
     width: 210px;
     float: right;
     background-color: #fff;
@@ -28,11 +28,11 @@ main>div{
     height: 260px;
     cursor: pointer;
 }
-.picture>a{
+.picture>a {
     width: 718px;
     height: 251px;
 }
-.picture a{
+.picture a {
     position: absolute;
     top: 10px;
     left: 7px;
@@ -40,12 +40,12 @@ main>div{
     margin-top: 2px;
 }
 
-.picture ul{
+.picture ul {
     position: absolute;
     bottom: 17px;
     right: 10px;
 }
-.picture li{
+.picture li {
     float: left;
     width: 17px;
     height: 18px;
@@ -54,65 +54,64 @@ main>div{
     font-weight: 700;
     text-align: center;
 }
-.picture .i-first{
+.picture .i-first {
     background: url("../images/14.png");
 }
-.picture p{
+.picture p {
     position: absolute;
     left: 7px;
     background: rgba(256,256,256,.3);
     width: 718px;
 }
-.p-top{
+.p-top {
     top: 12px;
     height: 15px;
 }
-.p-bottom{
+.p-bottom {
     bottom: 12px;
     height: 30px;
 }
 
 
 /*物业管理*/
-.service-1{
+.service-1 {
     background-position:  -256px -10px;
 }
-.service-2{
+.service-2 {
     background-position:  -318px -10px;
 }
-.service-3{
+.service-3 {
     background-position:  -380px -10px;
 }
 .service-4{
     background-position:  -194px -10px;
 }
-.service-5{
+.service-5 {
     background-position:  -442px -10px;
 }
-.manager i{
+.manager i {
     width: 42px;
     height: 33px;
     margin: 2px 7px 0 0;
 }
-
-.manager li{
+.manager li {
     line-height: 30px;
     border-top: 1px dashed #b6b6b6;
     padding: 6px 0;
 }
-.caption a{
+.caption a {
     margin-right: 10px;
     font-weight: 400;
     color: white;
 }
-.manager li a{
+.manager li a {
     color: #5a5d61;
     width: 210px;
 }
-.manager .s-first{
+.manager .s-first {
     border: none;
 }
-.manager .turn{
+.manager .turn {
     float: right;
     width: 8px;
     height: 10px;
@@ -122,19 +121,19 @@ main>div{
 
 
 /*通知*/
-.news{
+.news {
     position: relative;
     background-color: #fff;
     line-height: 35px;
     height: 35px;
 }
-.icon-2{
+.icon-2 {
     width: 20px;
     height: 20px;
     background-position: -67px -10px;
     margin: 7px;
 }
-.BBS{
+.BBS {
     padding-right: 45px;
     position: absolute;
     top: 0;
@@ -145,23 +144,23 @@ main>div{
 }
 
 /*关于我们*/
-.module{
+.module {
     display: flex;
     justify-content: space-between;
 }
-.module img{
+.module img {
     display: block;
     margin: 5px auto 10px;
 }
-.module .caption{
+.module .caption {
     background-color: #fff;
     color: #34373c;
 }
-.m-first .caption{
+.m-first .caption {
     background-color: #3a3e43;
     color: white;
 }
-.content{
+.content {
     margin-bottom: 10px;
     padding: 8px 8px 0;
     display: -webkit-box;
@@ -175,10 +174,10 @@ main>div{
 .m-first {
     width: 265px;
 }
-.m-first span{
+.m-first span {
     -webkit-line-clamp: 4;
 }
-.more{
+.more {
     position: absolute;
     bottom: -5px;
     right: 8px;
@@ -187,38 +186,38 @@ main>div{
 
 /*最新动态*/
 
-.icon-1\(1\){
+.icon-1\(1\) {
     width: 12px;
     height: 12px;
     background-position: -42px -10px;
     margin: 5px 4px 0 0;
 }
-.site-l .n-list{
+.site-l .n-list {
     line-height: 20px;
     padding: 10px 8px 5px;
 }
-.n-list li{
+.n-list li {
     border-top: 1px dashed #b6b6b6;
-    padding-top: 9px;
+    padding-top: 10px;
 }
-.site-l .n-first{
+.site-l .n-first {
     border: 0;
 }
 
-.n-list p{
+.n-list p {
     float: left;
     color: #5a5a5a;
 }
-.n-list a{
+.n-list a {
     width: 700px;
 }
 
 
 /*联系我们*/
-.contact ul{
+.contact ul {
     padding: 8px 0;
 }
-.contact li{
+.contact li {
     padding: 8px 10px;
     font-size: 16px;
     line-height: 23px;
@@ -227,7 +226,7 @@ main>div{
     font-weight: 700;
     color: #5b5d60;
 }
-.contact .middle{
+.contact .middle {
     margin: 14px 0;
 }
 

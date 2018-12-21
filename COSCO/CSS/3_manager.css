@@ -1,0 +1,36 @@
+main {
+    line-height: 25px;
+    font-size: 14px;
+}
+.deliver{
+    margin: 10px;
+}
+
+.manager i {
+    background: url("../images/css_sprite1.png");
+    width: 155px;
+    height: 100px;
+    margin-right: 10px;
+}
+.manager .service-2 {
+    background-position: 0 -131px;
+}
+.manager .service-3 {
+    background-position: 0 -262px;
+}
+.manager .service-4 {
+    background-position: 0 -393px;
+}
+.manager .service-5 {
+    background-position: 0 -524px;
+}
+.manager li {
+    height: 95px;
+    border-top: 1px dashed #b6b6b6;
+    margin: 10px 7px;
+    padding: 10px 0;
+}
+.manager p {
+    padding: 5px 10px 0 175px;
+    line-height: 25px;
+}
