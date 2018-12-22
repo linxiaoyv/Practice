@@ -20,16 +20,6 @@ i {
 .fr {
     float: right;
 }
-.clearfix {
-    *zoom: 1;
-}
-.clearfix:after {
-    display: block;
-    content: ' ';
-    clear: both;
-    height: 0;
-}
-
 
 /*header start*/
 
@@ -121,10 +111,11 @@ main div .icon-1 {
 
 /*小标题 start*/
 h6{
+    width: 130px;
     display: inline-block;
     border-radius: 8px;
-    padding: 0 35px;
     color: white;
+    padding: 0 15px;
 }
 .yellow {
     background-color: #989933;

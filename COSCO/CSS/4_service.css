@@ -1,0 +1,25 @@
+main {
+    line-height: 25px;
+    font-size: 14px;
+}
+.service i {
+    background: url("../images/css_sprite2.png");
+    width: 268px;
+    height: 204px;
+    margin-right: 10px;
+}
+.service-2{
+    background-position: 0 -240px;
+}
+.service {
+    margin-bottom: 40px ;
+}
+.service li {
+    height: 225px;
+    border-bottom: 1px dashed #b6b6b6;
+    padding-top: 15px;
+}
+.service p {
+    padding: 5px 10px 0 285px;
+    line-height: 25px;
+}

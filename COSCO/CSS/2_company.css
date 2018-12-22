@@ -2,11 +2,10 @@ h6{
     line-height: 56px;
     font-size: 16px;
     text-align: center;
-    /*font-weight: 700;*/
 }
 main{
-    /*height: 545px;*/
-    height: 360px;
+    height: 545px;
+    /*height: 360px;*/
 }
 .content{
     line-height: 25px;

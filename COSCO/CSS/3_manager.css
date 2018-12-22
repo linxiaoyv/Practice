@@ -5,7 +5,6 @@ main {
 .deliver{
     margin: 10px;
 }
-
 .manager i {
     background: url("../images/css_sprite1.png");
     width: 155px;
@@ -33,4 +32,7 @@ main {
 .manager p {
     padding: 5px 10px 0 175px;
     line-height: 25px;
+}
+h6{
+    text-align: center;
 }
