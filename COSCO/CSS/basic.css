@@ -20,7 +20,12 @@ i {
 .fr {
     float: right;
 }
-
+.mr60 {
+    margin-right: 60px;
+}
+.mb10 {
+    margin-bottom: 10px;
+}
 /*header start*/
 
 /*logo*/
