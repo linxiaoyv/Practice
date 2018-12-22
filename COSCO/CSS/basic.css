@@ -26,6 +26,9 @@ i {
 .mb10 {
     margin-bottom: 10px;
 }
+.w700{
+    width: 700px;
+}
 /*header start*/
 
 /*logo*/
@@ -62,6 +65,16 @@ h2 {
     background-color: #f2f2f2;
     margin: 2px 0 5px;
 }
+
+
+/*新闻小图标*/
+.icon-1\(1\) {
+    width: 12px;
+    height: 12px;
+    background-position: -42px -10px;
+    margin: 5px 4px 0 0;
+}
+
 
 /*导航*/
 nav {

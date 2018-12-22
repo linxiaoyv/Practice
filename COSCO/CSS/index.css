@@ -185,13 +185,6 @@ main>div {
 
 
 /*最新动态*/
-
-.icon-1\(1\) {
-    width: 12px;
-    height: 12px;
-    background-position: -42px -10px;
-    margin: 5px 4px 0 0;
-}
 .site-l .n-list {
     line-height: 20px;
     padding: 10px 8px 5px;
@@ -208,9 +201,9 @@ main>div {
     float: left;
     color: #5a5a5a;
 }
-.n-list a {
-    width: 700px;
-}
+/*.n-list a {*/
+    /*width: 700px;*/
+/*}*/
 
 
 /*联系我们*/

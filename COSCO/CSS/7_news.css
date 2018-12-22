@@ -1,0 +1,16 @@
+.n-list p {
+    float: left;
+}
+.n-list a{
+    width: 100%;
+}
+.n-list li {
+    border-top: 1px dashed #b6b6b6;
+    padding: 15px 10px 10px;
+}
+.n-list .n-first {
+    border: 0;
+}
+main {
+    font-size: 14px;
+}
