@@ -29,6 +29,9 @@ i {
 .w700{
     width: 700px;
 }
+.tc{
+    text-align: center;
+}
 /*header start*/
 
 /*logo*/
@@ -105,14 +108,15 @@ nav  li a:hover span {
 main {
     background-color: #fff;
     margin: 10px 10px;
-    padding: 10px;
+    padding: 10px 10px 20px;
 }
 .caption {
-    line-height: 27px;
+    line-height: 27px;!important;
     font-weight: 700;
     border-radius: 3px;
     background-color: #3a3e43;
     color: white;
+    font-size: 12px;!important;
 }
 main div .icon-1 {
     width: 9px;
@@ -153,6 +157,11 @@ h6{
 }
 /*小标题 end*/
 
+
+h5{
+    font-size: 16px;
+    text-align: center;
+}
 
 /*footer start*/
 footer {
