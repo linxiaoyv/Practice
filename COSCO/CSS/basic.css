@@ -32,9 +32,11 @@ i {
 .tc{
     text-align: center;
 }
+
+
 /*header start*/
 
-/*logo*/
+/*logo start*/
 .h-bottom {
     margin-top: 6px;
     background-color: #fff;
@@ -68,18 +70,11 @@ h2 {
     background-color: #f2f2f2;
     margin: 2px 0 5px;
 }
+/*logo end*/
 
 
-/*新闻小图标*/
-.icon-1\(1\) {
-    width: 12px;
-    height: 12px;
-    background-position: -42px -10px;
-    margin: 5px 4px 0 0;
-}
 
-
-/*导航*/
+/*导航 start*/
 nav {
     width: 890px;
     background: url('../images/bac1.png');
@@ -101,6 +96,8 @@ nav  li a:hover span {
     display: inline-block;
     padding-right: 15px;
 }
+/*导航 end*/
+
 /*header end*/
 
 
@@ -129,39 +126,18 @@ main div .icon-1 {
     height: 11px;
     background-position: -107px -10px;
 }
+
+
+/*新闻小图标 start*/
+.icon-1\(1\) {
+    width: 12px;
+    height: 12px;
+    background-position: -42px -10px;
+    margin: 5px 4px 0 0;
+}
+/*新闻小图标 end*/
+
 /*main end*/
-
-/*小标题 start*/
-h6{
-    width: 130px;
-    display: inline-block;
-    border-radius: 8px;
-    color: white;
-    padding: 0 15px;
-}
-.yellow {
-    background-color: #989933;
-
-}
-.purple {
-    background-color: #b065cc;
-}
-.pink {
-    background-color: #cc6566;
-}
-.blue {
-    background-color: #006766;
-}
-.orange {
-    background-color: #cc6601;
-}
-/*小标题 end*/
-
-
-h5{
-    font-size: 16px;
-    text-align: center;
-}
 
 /*footer start*/
 footer {
