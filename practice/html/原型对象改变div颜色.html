@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>通过原型对象改变div颜色</title>
+    <style>
+      div {
+        width: 20px;
+        height: 20px;
+        background-color: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="button" value="改变颜色" id="btn" />
+    <div id="dv"></div>
+    <script>
+      function ChangeStyle(btnId, dvId, color) {
+        this.btnObj = document.getElementById(btnId); //按钮对象
+        this.dvObj = document.getElementById(dvId); //div对象
+        this.color = color; //颜色
+      }
+      //数据共享改变背景颜色
+      ChangeStyle.prototype.init = function() {
+        console.log(this); //实例对象
+        var that = this;
+        this.btnObj.onclick = function() {
+          that.dvObj.style.backgroundColor = that.color;
+        };
+      };
+
+      //实例化对象
+      var cs = new ChangeStyle("btn", "dv", "red");
+      cs.init();
+      // console.log(cs);
+    </script>
+  </body>
+</html>
