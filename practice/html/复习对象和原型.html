@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>复习对象和原型</title>
+    <style>
+      .map {
+        width: 600px;
+        height: 400px;
+        background-color: #eee;
+        position: relative;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="map"></div>
+    <script>
+      // 三种创建对象方式：
+      // 1.字面量
+      // 2.系统构造函数
+      // 3.自定义构造函数
+      // 区别联系：
+      // 1.2.生成对象属于Object
+      // 3.常用，可以找到自己的数据类型
+
+      // 字面量
+      var per1 = {
+        name: "xiao",
+        age: 20,
+        eat: function() {}
+      };
+
+      //系统构造函数
+      var per2 = new Object();
+      per2.name = "xiao";
+      per2.age = 20;
+      per2.eat = function() {};
+
+      //自定义构造函数
+      function Person(name, age) {
+        this.name = name;
+        this.age = age;
+        this.eat = function() {};
+      }
+      var per3 = new Person("xiao", 20);
+    </script>
+    <script>
+      // 工厂模式和自定义构造函数异同：
+      // 同： 都是函数；可以传参； 可以创建函数；
+      //       工厂                      自定义构造函数
+      // 异：有new                        没有new
+      //     return                      没有return
+      //     函数名首字母不大写            函数名首字母大写
+      //     直接调用函数创建对象          通过new方式创建对象
+      //     new之后对象是当前对象         this 指代当前对象
+
+      //工厂模式
+      function createObj(age, name) {
+        var obj = new Object();
+        obj.age = age;
+        obj.name = name;
+        return obj;
+      }
+      var per5 = createObj(20, "xiao");
+
+      // 自定义构造函数
+      function Person(age, name) {
+        this.age = age;
+        this.name = name;
+      }
+      var per = new Person(20, "xiao");
+    </script>
+
+    <script>
+      //需要共享的数据写在原型中
+      //不需要共享的数据写在构造函数中
+
+      //原型用处：共享数据，节省内存
+      //原型：prototype（标准写法，程序员专用） →  构造函数属性
+      //      _proto_（不标准，浏览器使用） →  实例对象属性
+
+      // 构造函数，实例对象，原型对象关系：
+      // 1.构造函数实例化对象；
+      // 2.构造函数的prototype属性是原型对象；
+      // 3.构造函数的prototype属性有个构造器，构造器指向自己所在原型所在的构造函数；
+      // 4.实例对象的原型对象（_proto_）指向该构造函数的原型对象；
+      // 5.构造函数的原型对象中的方法是可以直接被实例对象直接访问的；
+    </script>
+
+    <script>
+      function Student(age, name) {
+        this.age = age;
+        this.name = name;
+      }
+      var stu = new Student(20, "xiao");
+
+      // 原型简单写法：
+      Student.prototype = {
+        // 可手动更改构造器指向
+        // constructor:Student,
+        weight: "55Kg",
+        eat: function() {
+          console.log("hha");
+        }
+      };
+      // stu.eat();
+      console.dir(Student);
+      console.log(stu);
+    </script>
+    <script>
+      function Animal(age, name) {
+        this.age = age;
+        this.name = name;
+      }
+
+      Animal.prototype.eat = function() {
+        console.log("eat");
+        this.play();
+      };
+      Animal.prototype.play = function() {
+        console.log("play");
+      };
+      var dog = new Animal(20, "xiao");
+      dog.eat();
+    </script>
+    <script>
+      //给系统函数添加新方法（相当于改变源码）
+
+      var arr = new Array(10, 20, 30);
+      arr.join(",");
+      console.dir(arr);
+
+      // 倒序
+      String.prototype.myReverse = function() {
+        for (var i = this.length - 1; i >= 0; i--) {
+          console.log(this[i]);
+        }
+      };
+      var str = new String("ahdjkgdghfjkgl");
+      str.myReverse();
+
+      // 排序
+      Array.prototype.mySort = function() {
+        for (var i = 0; i <= this.length - 1; i++) {
+          //每个位置
+          for (var j = 0; j <= this.length - 1; j++) {
+            //和所有对比
+            if (this[j] > this[j + 1]) {
+              var temp = this[j];
+              this[j] = this[j + 1];
+              this[j + 1] = temp;
+            }
+          }
+          console.log(this[i]);
+        }
+      };
+      var arr = new Array(60, 20, 80, 40);
+      arr.mySort();
+    </script>
+    <script>
+      //贪吃蛇食物方法
+
+      // 1.随机数函数
+      // 2.食物的构造函数
+      // 3.小方块的样式（原型）
+      // 4.方法（位置）
+
+      (function(window) {
+        //随机数构造函数
+        function Random() {}
+        Random.prototype.getRandom = function(min, max) {
+          return Math.floor(Math.random() * (max - min) + min);
+        };
+        window.random = new Random();
+      })(window);
+
+      (function(window) {
+        var map = document.querySelector(".map");
+
+        function Food(width, height, color) {
+          this.width = width || 20;
+          this.height = height || 20;
+          this.x = 0;
+          this.y = 0;
+          this.color = color;
+          this.element = document.createElement("div");
+        }
+
+        Food.prototype.foodStyle = function() {
+          var div = this.element;
+          div.style.width = this.width + "px";
+          div.style.height = this.height + "px";
+          div.style.backgroundColor = this.color;
+          div.style.position = "absolute";
+          map.appendChild(div);
+          this.foodPosition(map);
+        };
+
+        Food.prototype.foodPosition = function(map) {
+          var div = this.element;
+          div.style.left =
+            random.getRandom(0, map.offsetWidth / this.width) * this.width +
+            "px";
+          div.style.top =
+            random.getRandom(0, map.offsetHeight / this.height) * this.height +
+            "px";
+        };
+        var food = new Food(20, 20, "green");
+        food.foodStyle();
+      })(window);
+    </script>
+  </body>
+</html>
