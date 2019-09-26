@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // 面对过程：注重过程，每一步都要写清楚
+        // 面对对象：注重结果，找对象， 让对象完成
+        // 面对对象特性：封装、继承、多态
+
+        // 对象：具体指特定的某个事物
+        // 封装：将某些属性方法封装在对象中
+        // 多态：一个对象的不同行为，或同一行为针对不同对象，产生不同结果
+    
+
+        // 自定义构造函数创建对象：（4件事）
+        // 在内存中申请一块空间，开辟新空间，存储新对象
+        // this指向实例化对象
+        // 设置对象的属性方法
+        // 创建后的对象返回
+
+        // 原型是属性也是对象
+
+        // 原型链：是一种关系，原型对象和实例对象间的关系，通过下划线原型联系
+        // 原型指向可以改变
+        // 原型指向最终指向 object.prototype._proto_ → null
+        // 原型指向改变后，再添加原型方法
+
+        // 继承是为了实现数据共享
+        // 继承方式：
+        // 借用构造函数：解决属性问题
+        // 原型：改变原型指向
+        // 组合：原型+构造
+        // 拷贝：对象中需要共享的属性方法通过遍历复制到另一个对象中
+
+
+        // 组合继承 实例
+        function Person(name,age,sex){
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+        }
+        Person.prototype.eat = function(){
+            console.log("吃");
+        }
+        function Student(name,age,sex,score){
+            //借用构造函数，解决属性值重复的问题
+            Person.call(this,name,age,sex);
+            this.score = score;
+        }
+        //改变原型指向
+        Student.prototype = new Person();
+        var stu = new Student("小明",20,"男",100);
+        var stu1 = new Student("小明",20,"男",90);
+
+        console.log(stu.score);
+        console.log(stu1.score);
+
+        stu.eat();
+        stu1.eat();
+
+
+        // 函数声明放在if-else中 IE8浏览器会出问题
+        // 尽量使用函数表达式
+
+        // 函数是对象，对象不一定是函数
+        // 所有函数都是Function的构造函数创建的实例对象
+
+        // 回调函数：函数作为参数使用；
+
+
+
+    </script>
+</body>
+</html>

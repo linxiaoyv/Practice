@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+        li{
+            margin: 20px;
+            cursor: pointer;
+        }
+    </style>
+  </head>
+  <body>
+      <ul>
+          <li>赞（1）</li>
+          <li>赞（1）</li>
+          <li>赞（1）</li>
+          <li>赞（1）</li>
+      </ul>    
+    <script>
+        // apply,call,bind总结
+        // 作用：更改this指向
+        // 区别：实现方式不同
+        // 相同：若不传参或传null，则this默认指向windows
+        // apply,call 通过函数调用方式改变this指向，参数传递方式不同
+        // bind 在复制时改变this指向，参数在复制时或调用时传入，返回值是复制之后的这个函数
+
+        function Person(sex, name) {
+            this.sex = sex;
+            this.name = name;
+        }
+        Person.prototype.sayHi = function() {
+            console.log("sayHi" + "==" + this.score);
+        };
+        var per = new Person("男", "lin");
+        function Student(score) {
+            this.score = score;
+        }
+        var stu = new Student("20");
+        var stu1 = per.sayHi.bind(stu);
+        stu1();
+        // console.log(stu);
+
+        //bind 产生随机数
+        function ShowRandom() {
+            this.number = parseInt(Math.random() * 10 + 1);
+        }
+        ShowRandom.prototype.show = function() {
+            window.setInterval(this.show1.bind(this), 1000);
+        };
+        ShowRandom.prototype.show1 = function() {
+            console.log(this.number);
+        };
+        var random = new ShowRandom();
+        // random.show();
+    </script>
+    <script>
+        // 函数作为参数时，如果时命名函数，没有括号
+        function f1(fn) {
+            console.log("1");
+            fn();
+        }
+        function f2() {
+            console.log("命名函数做参数");
+        }
+        f1(function() {
+            console.log("匿名函数做参数");
+        });
+        f1(f2);
+    </script>
+    <script>
+        var num = 10;
+        console.log(typeof num); //变量数据类型
+        var obj = {};
+        console.log(obj instanceof Object); //对象是不是某个类型的
+        console.log(Object.prototype.toString.call([])); //某个对象的类型样子  [object Array]
+        //输出了类型是字符串 需要加引号
+        console.log(Object.prototype.toString.call([]) == "[object Array]");
+    </script>
+    <script>
+        // 排序函数sort
+        var arr = [0, 1, 80, 5, 90, 6];
+        // arr.sort();
+        // console.log(arr);
+        //这样用可能会不稳定，下面这样用更好,还可以比较字母顺序
+        arr.sort(function(obj1, obj2) {
+            if (obj1 > obj2) {
+            return 1;
+            } else if (obj1 == obj2) {
+            return 0;
+            } else {
+            return -1;
+            }
+        });
+        console.log(arr);
+    </script>
+    <script>
+        // 电影排序小案例
+        function File(name, time, size) {
+            this.name = name;
+            this.size = size;
+            this.time = time;
+        }
+
+        var f1 = new File("ahksdjfl", "1997-05-17", "500M"),
+            f2 = new File("abklflkd", "2007-05-17", "800M"),
+            f3 = new File("cdjskfhkfh", "2017-05-17", "400M"),
+            arr = [f1, f2, f3];
+
+        function fn(attr) {
+            return function getSort(obj1, obj2) {
+            if (obj1[attr] > obj2[attr]) {
+                return 1;
+            } else if (obj1[attr] == obj2[attr]) {
+                return 0;
+            } else {
+                return -1;
+            }
+            };
+        }
+
+        var ff = fn("time");
+        arr.sort(ff);
+        for (var i = 0; i < arr.length; i++) {
+            console.log(arr[i]);
+        }
+    </script>
+    <script>
+        // 闭包：对象闭包，函数闭包，函数A中有函数B或者对象B可以访问函数A中定义的变量或数据，形成闭包
+        // 作用：缓存数据，延长作用域链
+
+        // 随机数 三次输出不同随机数
+        function showRandom(){
+            var num = parseInt(Math.random()*10+1);
+            console.log(num);
+        }
+        showRandom();
+        showRandom();
+        showRandom();
+
+        // 闭包产生随机数 输出同一随机数
+        function fShowRandom(){
+            var num = parseInt(Math.random()*10+1);
+            return function(){
+                console.log(num);
+            }
+        }
+        var fff=fShowRandom();
+        // 调用三次只有输出那步
+        fff();
+        fff();
+        fff();
+    </script>
+    <script>
+        // 闭包 点赞小案例
+        // 获取元素
+        function $my(tagName){
+            return document.getElementsByTagName(tagName);
+        }
+
+        // 闭包缓存数据
+        function getValue(){
+            var value = 2;
+            return function(){
+                this.innerHTML="赞（"+(value++)+")";
+            }
+        }
+
+        var btnObjs = $my("li");
+        for(var i=0; i<btnObjs.length;i++){
+            btnObjs[i].onclick=getValue();
+        }
+    </script>
+    <script>
+        // 递归：函数自己调用自己，一定要有结束条件
+
+        // 案例1：1+2+3+4+5+...+n
+        function sum(n){
+            if(n == 1){
+                return 1;
+            }
+            return n+sum(n-1);
+        }
+        console.log(sum(3));
+
+
+        // 案例2：123 求1+2+3
+        function sum(n){
+            if(n<10){
+                return n;
+            }
+            return n%10+sum(parseInt(n/10));
+        }
+        console.log(sum(569));
+
+        // 案例3：斐波那契数列
+        function getFib(n){
+            if(n==1||n==2){
+                return 1;
+            }
+            return getFib(n-1)+getFib(n-2);
+        }
+        console.log(getFib(5));
+    </script>
+  </body>
+</html>
