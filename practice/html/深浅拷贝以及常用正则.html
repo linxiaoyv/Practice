@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <style>
+            .reg{
+                background-color: #ccc;
+                width: 400px;
+                height: 300px;
+                margin: auto;
+            }
+            label{
+                width: 80px;
+                display: inline-block;
+                margin: 10px;
+            }
+            span{
+                margin-left: 30px;
+            }
+            .strengthlv0,.strengthlv1,.strengthlv2,.strengthlv3{
+                height: 15px;
+                border: 1px solid grey;
+                display: inline-block;
+                margin: -4px;
+            }
+            .strengthlv0{
+                background-color: #fff;
+                width: 170px;
+            }
+            .strengthlv1{
+                background-color: red;
+                width: 60px;
+            }
+            .strengthlv2{
+                background-color: orange;
+                width: 120px;
+            }.strengthlv3{
+                background-color: green;
+                width: 170px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <ul>
+                <li>123</li>
+                <li>456</li>
+                <li>789</li>
+            </ul>
+            <div>
+                <div>
+                <span>haha</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="reg">
+            <label for="QQ">QQ:</label><input type="text" id="QQ" maxlength="11"><span></span></br>
+            <label for="密码">密码：</label><input type="text" id="pwd" maxlength="16"><span></span></br>
+            <div>
+                <label for="">密码强度：</label>
+                <div id="strengthlevel" class="strengthlv0"></div>
+            </div>
+            <label for="姓名">姓名：</label><input type="text" id="userName" maxlength="4"><span></span></br>
+            <label for="手机">手机：</label><input type="text" id="phone" maxlength="11"><span></span></br>
+            <label for="邮箱">邮箱：</label><input type="text" id="email" maxlength="20"><span></span></br>
+            <label for="座机">座机：</label><input type="text" id="telephone" maxlength="12"><span></span></br>     
+        </div>
+
+
+        <script>
+            // 浅拷贝:复制，把一个对象中的所有内容直接复制给另一个对象，或者说把一个对象的地址给另一个对象，他们指向相同，两个对象间有共同属性方法，都可以使用
+            var obj1={
+                name:"abh",
+                sex:"nan",
+                car:["奔驰","宝马"]
+            }
+            var obj2={};
+            function extend (a,b){
+                for(var key in b){
+                    a[key]=b[key];
+                }
+            }
+            extend(obj2,obj1);
+            console.dir(obj1.car==obj2.car);
+        </script>
+        <script>
+            // 深拷贝：把所有属性方法一个个找到，在新对象中一个个开辟空间，复制进去
+            var obj1={
+                name:"abh",
+                sex:"nan",
+                car:["奔驰","宝马"],
+                dog:{
+                    name:"旺财",
+                    age:"2"
+                }
+            }
+            var obj2={};
+            function extend (a,b){
+                for(var key in b){
+                    var item = b[key];
+                    if(item instanceof Array){
+                        a[key] = [];
+                        extend(a[key],item);
+                    }else if(item instanceof Object){
+                        a[key] = {};
+                        extend(a[key],item);
+                    }else{
+                        a[key]=b[key];
+                    }
+                }
+            }
+            extend(obj2,obj1);
+            console.dir(obj2.dog);
+        </script>
+
+        <script>
+            // 遍历Dom树
+            var root= document.documentElement;
+            // 1.依据根节点找到子节点
+            function forDOM(root){
+                var children = root.children;
+                forChildren(children);
+            }
+            // 2.显示子节点名字
+            function forChildren(children){
+                for(var i = 0;i < children.length;i++){
+                    var child = children[i];
+                    showName(child);
+                    child.children&&forDOM(child);
+                }
+            }
+            function showName(node){
+                console.log("节点名字是："+node.nodeName);
+            }
+
+            forDOM(root);
+        </script>
+
+        <script>
+            // 正则表达式：通过限定符或元字符实现匹配字符串的目的
+            // 常用元字符：
+            // .    除\n以外任意单个字符
+            // []   范围或解除元字符作用
+            // |    或
+            // ()   分组或提升优先级
+
+            // 限定符：
+            // *     0-无限 ={0,}
+            // +     1-无限 ={1,}
+            // ？    0-1  或  阻止贪婪模式 ={0,1}
+
+            // {}  具体次数
+            // ^   开始或者取反
+            // $   结束
+
+            // \d  数字
+            // \D  非数字
+            // \s  空白符
+            // \S  非空白符
+            // \w  非特殊字符(包括_)
+            // \W  特殊字符
+            // \b  单词边界
+
+
+            // 正则创建对象：
+            // 1.通过构造函数创建：
+            var reg = new RegExp(/\d/);
+            // 2.字面量创建：（方便）
+            var reg = /\d/;
+            console.log(reg.test("4"));
+
+
+            // 常用正则表达式：
+            // 邮箱验证
+            // [0-9a-zA-Z_.-]+[@][0-9a-zA-Z_.-]+([.][a-zA-Z]+){1,2}
+
+            // g 全局模式
+            // i 忽略大小写
+        </script>
+        <script>
+            // 正则其他用法：
+            // 1.筛选：match  exec
+            var str="中国移动:10086,中国联通:10010,中国电信:10000,123123@xx.com,fangfang@valuedopinions.cn 286669312@qq.com 2、emailenglish@emailenglish.englishtown.com 286669312@qq.com,2017-11-12,shuaiyangtaishuaile@itcast.com.cn,小苏好帅哦,真的是太帅了,帅,就是真帅,  哦买噶的    ,太幸福了  ,HhpphH";
+            console.log(str.match(/\d{5}/g));
+            console.log(str.match(/([0-9a-zA-z_.-]+)[@]([0-9a-zA-z_-]+)(([.][a-zA-z_.-]+){1,2})/g));
+            console.log(RegExp.$1);
+            console.log(RegExp.$2);
+            console.log(RegExp.$3);
+            console.log(str.match(/(\d{4})[-](\d{2})[-](\d{2})/g));
+            console.log(RegExp.$3);
+
+
+            // 2.置换：replace
+            console.log(str.replace(/帅/g,"猥琐"));
+            console.log(str.replace(/[h]/gi,"S"));
+
+            
+            
+            // 3.去空格: trim
+            console.log(str.replace(/\s+/g,""));
+
+            var str1 = "中国移动:10086,中国联通:10010,中国电信:10000";
+            //正则表达式对象.exec方法传入字符串
+            var reg=/\d{5}/g;
+            var array=reg.exec(str1);
+            // console.log(array);
+            // console.log(reg.exec(str1));
+            // console.log(reg.exec(str1));
+            // console.log(reg.exec(str1));
+            // console.log(reg.exec(str1));
+
+            while(array!=null){
+                console.log(array[0]);
+                array=reg.exec(str1);
+            }
+            
+        </script>
+        <script>
+        //正则表达式常用案例
+        // 1.密码强度验证
+        function $my(id){
+            return document.getElementById(id);
+        }
+        function getlvl(pwd){
+            var lvl=0;
+            if(/\d/.test(pwd)){
+                lvl++;
+            }
+            if(/[^0-9a-zA-z_]/.test(pwd)){
+                lvl++;
+            }
+            if(/[a-zA-z]/.test(pwd)){
+                lvl++;
+            }
+            return lvl;
+        }
+        $my("pwd").onkeyup=function(){
+            $my("strengthlevel").className="strengthlv"+(this.value.length>=6?getlvl(this.value):0);
+        }
+        // 2.邮箱验证
+        // $my("email").onblur=function(){
+        //     if(/^[0-9a-zA-z_.-]+[@][0-9a-zA-z_.-]+([.][0-9a-zA-z_.-]+){1,2}$/.test(this.value)){
+        //         this.style.background = "green";
+        //     }else{
+        //         this.style.background = "red";
+        //     }
+        // }
+        
+        // 3.中文名字验证
+        // $my("userName").onblur=function(){
+        //     if(/^[\u4e00-\u9fa5]{2,6}$/.test(this.value)){
+        //         this.style.background = "green";
+        //     }else{
+        //         this.style.background = "red";
+        //     }
+        // }
+
+        // 4.验证表单
+        function check(id,reg){
+            $my(id).onblur = function(){
+                if(reg.test(this.value)){
+                    this.nextElementSibling.innerText = "正确";
+                    this.nextElementSibling.style.color = "green";
+                }else{
+                    this.nextElementSibling.innerText = "输入有误";
+                    this.nextElementSibling.style.color = "red";
+                }
+            }  
+        }
+
+        check("QQ",/^\d{5,11}$/);
+        check("userName",/^[\u4e00-\u9fa5]{2,6}$/);
+        check("email",/^[0-9a-zA-z_.-]+[@][0-9a-zA-z_.-]+([.][0-9a-zA-z_.-]+){1,2}$/);
+        check("phone",/^[1]\d{10}$/);
+        check("telephone",/^(\d{3,4}[-])?\d{7,8}$/);
+        </script>
+        <script>
+        // 数组和伪数组区别：
+        // 1.数组length可变；
+        // 2.数组可调用数组的方法；
+        // 3.数组的实例对象的_proto_指向Array的prototype
+        </script>
+    </body>
+</html>
