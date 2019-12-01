@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>侧边栏滑动</title>
+    <style>
+        header{
+            height: 300px;
+            margin-bottom: 30px;
+            background-color: #c5c5c5;
+        }
+        main{
+            height: 800px;
+            background-color:#c7bbbb;
+        }
+        .slidder{
+            position: fixed;
+            right: 0;
+            top:50%;
+            margin-top: -50px;
+            text-align: center; 
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .slidder span{
+            display: block;
+            width: 50px;
+            height: 40px;
+            line-height: 40px;
+        }
+        .con{
+            position: absolute;
+            width: 200px;
+            z-index: -1;
+            left: 0;
+            height: 40px;
+            line-height: 40px;
+            background-color: #eee;
+        }
+        #feedBack{
+            top: 40px;
+
+        }
+        #backTop{
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- 缓动动画回到顶部 -->
+    <header>
+        header
+    </header>
+    <main>
+        main
+    </main>
+    <div class="slidder">
+        <span>↑</span>
+        <span>←</span>
+        <div class="con" id="backTop">返回顶部</div>
+        <div class="con" id="feedBack">问题反馈</div>
+    </div>
+    <script>
+        // 左右缓动动画封装
+        function animate(element, target,callback) {
+            clearInterval(element.timeId);
+            element.timeId = setInterval(function () {
+                // 每次移动距离
+                var step = (target - element.offsetLeft)/10;
+                // 保证step是整数
+                step = step>0 ? Math.ceil(step) : Math.floor(step);
+                if (element.offsetLeft == target) {
+                // 停止动画，返回回调函数
+                clearInterval(element.timeId);
+                callback && callback();
+                }
+                element.style.left = element.offsetLeft+step + "px";  
+            }, 15);
+        }
+
+        // 上下缓动动画封装
+        function animateTop(element, target,callback) {
+            clearInterval(element.timeId);
+            element.timeId = setInterval(function () {
+                // 每次移动距离
+                var step = (target - window.pageYOffset)/10;
+                // 保证step是整数
+                step = step>0 ? Math.ceil(step) : Math.floor(step);
+                if (window.pageYOffset == target) {
+                // 停止动画，返回回调函数
+                clearInterval(element.timeId);
+                callback && callback();
+                }
+                window.scroll(0,window.pageYOffset+step);
+            }, 15);
+        }
+
+
+        // 获取slidder内元素
+        var toTop = document.getElementsByClassName("slidder")[0].children[0];
+        var left = document.getElementsByClassName("slidder")[0].children[1];
+        var feedBack = document.getElementById("feedBack"); 
+        var backTop = document.getElementById("backTop"); 
+
+        // 鼠标滑入toTop，backTop滑出
+        toTop.addEventListener('mouseover',function(){
+            animate(backTop, -150);
+        },false);
+        toTop.addEventListener('click',function(){
+            animateTop(window, 0);
+        },false);
+        // 鼠标滑出toTop，backTop滑回
+        toTop.addEventListener('mouseout',function(){
+            animate(backTop, 0);
+        },false);
+
+
+
+        // 鼠标滑入left，feedBack滑出
+        left.addEventListener('mouseover',function(){
+            animate(feedBack, -150,function(){
+                left.innerHTML="→";
+            });
+        },false);
+        // 鼠标滑出left，feedBack滑回
+        left.addEventListener('mouseout',function(){
+            animate(feedBack, 0 ,function(){
+                left.innerHTML="←";
+            });
+        },false);
+
+        
+
+
+
+    </script>
+</body>
+</html>
+
+
+
