@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>移动端拖动元素</title>
+    <style>
+        div{
+            width: 50px;
+            height: 50px;
+            background: yellow;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    
+    <script>
+        // 手指坐标
+        var startX = 0,startY =0;
+        // 盒子坐标
+        var x=0,y=0;
+        var div = document.querySelector("div");
+
+        div.addEventListener("touchstart",function(e){
+            x=this.offsetLeft;
+            y=this.offsetTop;
+            startX = e.targetTouches[0].pageX;
+            startY = e.targetTouches[0].pageY;
+        })
+
+        div.addEventListener("touchmove",function(e){
+            var moveX = e.targetTouches[0].pageX-startX;
+            var moveY = e.targetTouches[0].pageY-startY;
+            this.style.left = (x+moveX)+"px";
+            this.style.top = (y+moveY)+"px";
+            // 阻止屏幕默认滚动
+            e.preventDefault();
+        })
+
+
+    </script>
+</body>
+</html>
