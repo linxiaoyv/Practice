@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>筋斗云导航栏</title>
+    <style>
+      body {
+        background: black;
+      }
+      header {
+        text-align: center;
+        background-color: #fff;
+        border-radius: 5px;
+        position: relative;
+        width: 900px;
+        margin: auto;
+        height: 42px;
+      }
+      .cloud {
+        position: absolute;
+        background: url(images/cloud.gif);
+        left: 40px;
+        top: 0;
+        width: 83px;
+        height: 42px;
+      }
+      .nav {
+        position: absolute;
+        margin: 0;
+      }
+      .nav li {
+        width: 83px;
+        height: 42px;
+        line-height: 42px;
+        float: left;
+        list-style: none;
+      }
+      .nav li a {
+        text-decoration: none;
+        color: black;
+      }
+      .nav li:hover a{
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <span class="cloud"></span>
+      <ul class="nav">
+        <li><a href="#">师资力量</a></li>
+        <li><a href="#">首页新闻</a></li>
+        <li><a href="#">师资力量</a></li>
+        <li><a href="#">首页新闻</a></li>
+        <li><a href="#">师资力量</a></li>
+        <li><a href="#">首页新闻</a></li>
+        <li><a href="#">师资力量</a></li>
+        <li><a href="#">首页新闻</a></li>
+        <li><a href="#">师资力量</a></li>
+        <li><a href="#">首页新闻</a></li>
+      </ul>
+    </header>
+
+    <script>
+      // 封装动画函数
+      function animate(element, target, callback) {
+        clearInterval(element.timeId);
+        element.timeId = setInterval(function() {
+          // 获取当前位置
+          var current = element.offsetLeft;
+          // 设置每次移动距离，避免小数
+          var step = (target - current) / 10;
+          step = step > 0 ? Math.ceil(step) : Math.floor(step);
+          element.style.left = current + step + "px";
+          // 达到目标位置，清除定时器数据
+          if (current == target) {
+            clearInterval(element.timeId);
+            // console.log(1);
+            callback && callback;
+          }
+        }, 15);
+      }
+
+      var lis = document.getElementsByTagName("li");
+      var cloud = document.getElementsByClassName("cloud")[0];
+      var left = cloud.offsetLeft;
+      for (var i = 0; i < lis.length; i++) {
+        lis[i].addEventListener('mouseenter', function() {
+          animate(cloud, this.offsetLeft);
+        });
+
+        lis[i].addEventListener('mouseleave', function() {
+          animate(cloud, left);
+        });
+
+        lis[i].addEventListener('click', function() {
+          left = this.offsetLeft;
+          animate(cloud, left);
+        });
+      }
+
+    </script>
+  </body>
+</html>
