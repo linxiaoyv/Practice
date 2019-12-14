@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>PC轮播图</title>
+    <style>
+      /* 简单轮播图 */
+      .box {
+        width: 730px;
+        height: 450px;
+        margin: 100px auto;
+        overflow: hidden;
+        position: relative;
+        cursor: pointer;
+      }
+      #banner {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 800%;
+        padding: 0;
+      }
+
+      #banner li {
+        float: left;
+
+      }
+
+      .arrow {
+        position: absolute;
+        top: 50%;
+        margin-top: -25px;
+        width: 730px;
+        height: 52px;
+        display: none;
+      }
+
+      .arrow div {
+        position: absolute;
+        font-size: 40px;
+        color: white;
+        background-color: black;
+        opacity: 0.5;
+        width: 45px;
+        text-align: center;
+      }
+
+      #right {
+        right: 0;
+      }
+
+      #slider{
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        margin-left: -50px;
+        list-style: none;
+
+      }
+
+      #slider li {
+        background-color: seashell;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        float: left;
+        margin-right: 5px;
+      }
+
+      #slider .current {
+        background-color: orange;
+      }
+
+      .box:hover .arrow {
+        display: block;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- 简单轮播图 -->
+    <div class="box" id="dv">
+      <!-- 图片 -->
+      <ul id="banner">
+        <li>
+          <a href="#"><img src="../images/轮播图/1.jpg" alt=""/></a>
+        </li>
+        <li>
+          <a href="#"><img src="../images/轮播图/2.jpg" alt=""/></a>
+        </li>
+        <li>
+          <a href="#"><img src="../images/轮播图/3.jpg" alt=""/></a>
+        </li>
+        <li>
+          <a href="#"><img src="../images/轮播图/4.jpg" alt=""/></a>
+        </li>
+        <li>
+          <a href="#"><img src="../images/轮播图/5.jpg" alt=""/></a>
+        </li>
+        <li>
+          <a href="#"><img src="../images/轮播图/6.jpg" alt=""/></a>
+        </li>
+      </ul>
+      <!-- 下方小圆点 -->
+      <ul id="slider"></ul>
+
+      <!-- 左右焦点按钮 -->
+      <div class="arrow">
+        <div id="left">&lt</div>
+        <div id="right">&gt</div>
+      </div>
+    </div>
+
+    <!-- 简单轮播图 -->
+    <script>
+      // 获取元素
+      function my$(id){
+        return document.getElementById(id);
+      }
+      // 缓动动画封装
+      function animate(element, target, callback) {
+        clearInterval(element.timeId);
+        element.timeId = setInterval(function() {
+          // 每次移动距离
+          var step = (target - element.offsetLeft) / 10;
+          // 保证step是整数
+          step = step > 0 ? Math.ceil(step) : Math.floor(step);
+          if (element.offsetLeft == target) {
+            // 停止动画，返回回调函数
+            clearInterval(element.timeId);
+            callback && callback();
+          }
+          element.style.left = element.offsetLeft + step + "px";
+        }, 15);
+      }
+
+      // 获取ul对象
+      var banner = my$("banner");
+      // 获取图片对象
+      var imgs = banner.children;
+      // 图片宽度
+      var imgWidth = my$("dv").offsetWidth;
+      // 设置索引值
+      var index = 0;
+      // 节流阀变量
+      var flag = true;
+
+      // 小圆点相关事件
+      // 创建小圆点,插入ul中
+      for (var i = 0; i < imgs.length; i++) {
+        var liObj = document.createElement("li");
+        my$("slider").appendChild(liObj);
+      }
+      // 获取小圆点
+      var lis = my$("slider").children;
+      lis[0].className = "current";
+      for (var j = 0; j < lis.length; j++) {
+        // 添加索引属性,存储索引
+        lis[j].index = j;
+        // 小圆点滑动事件
+        lis[j].onmouseover = function() {
+          // 获取当前小圆点索引
+          var index = this.index;
+          // 滑动到相应索引图片
+          animate(banner, -index * imgWidth);
+          // 设置当前小圆点样式
+          circleChange(index);
+        };
+      }
+
+      // 克隆第一张图片插入到图片末尾,实现无缝轮播
+      banner.appendChild(imgs[0].cloneNode(true));
+
+      //下一页点击事件
+      my$("right").onclick = clickHandle;
+
+      // 下一页点击事件函数
+      function clickHandle() {
+        if (flag) {
+          // 关闭节流阀
+          flag = false;
+          // 当前是最后一张
+          if (index == imgs.length - 1) {
+            // 转到第一张
+            index = 0;
+            banner.style.left = 0;
+          }
+          index++;
+          animate(banner, -index * imgWidth, function() {
+            // 打开节流阀
+            flag = true;
+          });
+          // 小圆点根据图片跳转对应索引
+          circleChange(index);
+        }
+      }
+
+      // 上一页点击事件
+      my$("left").onclick = function() {
+        if (flag) {
+          // 关闭节流阀
+          flag = false;
+          // 当前是第一张
+          if (index == 0) {
+            // 转到最后一张
+            index = imgs.length - 1;
+            banner.style.left = -index * imgWidth + "px";
+          }
+          index--;
+          animate(banner, -index * imgWidth, function() {
+            // 打开节流阀
+            flag = true;
+          });
+          // 小圆点根据图片跳转对应索引
+          circleChange(index);
+        }
+      };
+
+      // 设置自动轮播
+      var timeId = setInterval(clickHandle, 2000);
+
+      // 鼠标滑入,清除定时器
+      my$("dv").onmouseenter = function() {
+        clearInterval(timeId);
+        // 清除定时器变量
+        timeId = null;
+      };
+      // 鼠标滑出，重置定时器
+      my$("dv").onmouseleave = function() {
+        timeId = setInterval(clickHandle, 2000);
+      };
+
+      // 小圆点排他样式的封装函数
+      function circleChange(index) {
+        for (var i = 0; i < lis.length; i++) {
+          lis[i].removeAttribute("class");
+        }
+        // 判断是否是克隆图片的index
+        var circle = index == lis.length ? 0 : index;
+        lis[circle].className = "current";
+      }
+    </script>
+  </body>
+</html>
